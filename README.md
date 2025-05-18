@@ -1,102 +1,177 @@
-# Tools-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free online image compressor to reduce PNG and JPG file size without losing quality. Fast, efficient, and SEO optimized.">
-  <meta name="keywords" content="Online Image Compressor, Free PNG & JPG Compression, Compress Images without Losing Quality, Fast Image Size Reducer, Web-based Image Optimization Tool">
-  <meta name="author" content="Jasminder Singh">
-  <meta property="og:title" content="Online Image Compressor">
-  <meta property="og:description" content="Compress PNG and JPG images online for free. SEO optimized and responsive.">
-  <meta property="og:url" content="https://jasmindersingh28.github.io">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://jasmindersingh28.github.io">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>Online Image Compressor - Compress PNG & JPG</title>
-  <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@latest/dist/browser-image-compression.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+# Tools-<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compress your images online with high-quality results. Fast, secure and free image compression tool by jasmindersingh28.github.io" />
+  <meta name="keywords" content="image compression, online image compressor, reduce image size, compress jpg, compress png, web image optimization" />
+  <meta name="author" content="Jasminder Singh" />
+  <title>Image Compressor - jasmindersingh28.github.io</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    body {
-      font-family: sans-serif;
-    }
-    .hidden { display: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }body {
+  background: #f5f7fa;
+  color: #333;
+}
+
+header {
+  background: #4a90e2;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+}
+
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type='file'],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #357ab8;
+}
+
+#preview {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+footer {
+  text-align: center;
+  margin: 50px 0 20px;
+  color: #777;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2em;
+  }
+
+  main {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
   </style>
+</head><body>
+  <header>
+    <h1>Image Compressor</h1>
+    <p>Reduce image size without losing quality</p>
+  </header>  <main>
+    <div class="form-group">
+      <label for="imageUpload">Select an image:</label>
+      <input type="file" id="imageUpload" accept="image/*" />
+    </div><div class="form-group">
+  <label for="compressionLevel">Choose Compression Level:</label>
+  <select id="compressionLevel">
+    <option value="0.9">Low (90%)</option>
+    <option value="0.7">Medium (70%)</option>
+    <option value="0.5">High (50%)</option>
+  </select>
+</div>
+
+<button onclick="compressImage()">Compress Image</button>
+
+<div id="preview"></div>
+
+  </main>  <footer>
+    &copy; 2025 jasmindersingh28.github.io | All rights reserved
+  </footer>  <!-- Google AdSense Ad Unit -->  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script><ins class="adsbygoogle"
+style="display:block; text-align:center; margin-top: 20px;"
+data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+data-ad-slot="1234567890"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Online Image Compressor",
-      "url": "https://jasmindersingh28.github.io",
-      "description": "Compress PNG and JPG images online without losing quality. Fast and free."
-    }
-  </script>
-  <script>
-    async function compressImage(file) {
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1024,
-        useWebWorker: true
+  </script>  <script>
+    function compressImage() {
+      const fileInput = document.getElementById('imageUpload');
+      const compressionLevel = parseFloat(document.getElementById('compressionLevel').value);
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+
+      const file = fileInput.files[0];
+      if (!file) return alert('Please upload an image.');
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', compressionLevel);
+          const compressedImg = document.createElement('img');
+          compressedImg.src = compressedDataUrl;
+          preview.appendChild(compressedImg);
+
+          const downloadBtn = document.createElement('a');
+          downloadBtn.href = compressedDataUrl;
+          downloadBtn.download = 'compressed-image.jpg';
+          downloadBtn.textContent = 'Download Compressed Image';
+          downloadBtn.style.display = 'block';
+          downloadBtn.style.marginTop = '15px';
+          downloadBtn.style.textAlign = 'center';
+          downloadBtn.style.fontWeight = 'bold';
+          preview.appendChild(downloadBtn);
+        };
       };
-      try {
-        const compressedFile = await imageCompression(file, options);
-        const originalSize = (file.size / 1024).toFixed(2);
-        const compressedSize = (compressedFile.size / 1024).toFixed(2);
-
-        document.getElementById('results').innerHTML = `
-          <p>Original Size: ${originalSize} KB</p>
-          <p>Compressed Size: ${compressedSize} KB</p>
-          <a download="compressed-${file.name}" href="${URL.createObjectURL(compressedFile)}">Download Compressed Image</a>
-        `;
-      } catch (error) {
-        alert('Compression failed: ' + error.message);
-      }
+      reader.readAsDataURL(file);
     }
-
-    function handleFileInput(event) {
-      const file = event.target.files[0];
-      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        compressImage(file);
-      } else {
-        alert('Please upload a valid PNG or JPG image.');
-      }
-    }
-  </script>
-</head>
-
-<body class="bg-gray-100 text-gray-900">
-  <header class="p-6 bg-blue-600 text-white text-center shadow-lg">
-    <h1 class="text-2xl font-bold">Online Image Compressor</h1>
-    <p class="text-sm">Compress PNG & JPG images online for free without losing quality.</p>
-  </header>
-
-  <main class="max-w-2xl mx-auto p-6 mt-6 bg-white rounded-2xl shadow-md">
-    <div class="mb-4">
-      <label for="imageInput" class="block text-lg font-semibold mb-2">Upload an image:</label>
-      <input id="imageInput" type="file" accept="image/png, image/jpeg" class="w-full p-2 border border-gray-300 rounded" onchange="handleFileInput(event)" />
-    </div>
-    <div id="results" class="mt-4 text-sm"></div>
-  </main>
-
-  <div class="my-6 text-center">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="YYYYYYYYYY"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <footer class="mt-10 text-center p-4 text-sm text-gray-500">
-    &copy; 2025 <a href="https://github.com/jasmindersingh28" class="text-blue-500">Jasminder Singh</a> | All rights reserved.
-  </footer>
-</body>
-
-</html>
+  </script></body></html>
